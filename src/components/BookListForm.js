@@ -1,5 +1,3 @@
-'use client';
-
 import React, {useState, useEffect} from "react";
 import CalendarComponent from './calendar';
 import CustomDatePickerStart from "./CustomDatePickerStart";
