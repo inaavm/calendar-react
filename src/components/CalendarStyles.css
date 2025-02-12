@@ -1,0 +1,53 @@
+.rbc-event {
+    background-color:transparent !important; 
+ 
+    border: none !important;
+    border-radius: 5px !important;
+    color: rgb(27, 49, 214) !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.6rem !important;
+    padding: .3rem !important;
+    text-align: center !important;
+  }
+  
+  .rbc-today {
+    background-color: #fbfbfb !important;
+    /* border: 1px solid #464646 !important; */
+  }
+  
+  /* .rbc-today-title {
+    color:red!important;
+  } */
+  
+  .rbc-header {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    padding: 8px 0 !important;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+  }
+  
+  .rbc-off-range-bg {
+    background-color: #ffffff !important;
+  }
+  
+  .rbc-date-cell {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    /* background-color: #e8e37ad8 !important; */
+  }
+  
+  .rbc-toolbar-button[data-value="today"] {
+    background-color: #e8e37ad8 !important;
+    color: black !important;
+  }
+
+  /* change the monht title */
+  .rbc-toolbar-label {
+    font-family: 'Montserrat', sans-serif !important;
+    font-size: 1.5rem !important;  
+    color: #2C2C2C!important;  /* Change text color */
+    letter-spacing: 1px; 
+    font-weight: 700 !important;
+
+}
