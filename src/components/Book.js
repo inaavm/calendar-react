@@ -113,14 +113,14 @@ const Book = ({setBookListInitValue, bookId, bookTitle, bookStart, bookEnd}) => 
             <LocalizationProvider dateAdapter={AdapterDateFns}>
     
                 <CustomDatePickerStart
-                            label="Start Date"
+                            label="From"
                             value={updateNewBookStart}
                             onChange={setNewUpdateBookStart} // {prop with state update function} from the Component
                             isSelected={startDateSelected}
                             setIsSelected={setStartDateSelected}
                 />
                  <CustomDatePickerEnd
-                            label="End Date"
+                            label="To"
                             value={updateNewBookEnd}
                             onChange={setNewUpdateBookEnd} // {prop with state update function} from the Component
                             isSelected={endDateSelected}
@@ -157,10 +157,11 @@ const Book = ({setBookListInitValue, bookId, bookTitle, bookStart, bookEnd}) => 
               sx = {{
                 color: "#F00000",
                 fontWeight:"800",
-                backgroundColor:"#FFE3E2",
+                backgroundColor:"#FFFFFF",
                 boxShadow:"none",
+                width:"1rem",
                 ":hover": { // needs to be precised as well when changing a a color 
-                  backgroundColor:"#FFE3E2",
+                  backgroundColor:"#FFFFFF",
                   boxShadow:"none",
                   borderColor:"#FFE3E2",
                   border:"1px solid",
@@ -168,10 +169,10 @@ const Book = ({setBookListInitValue, bookId, bookTitle, bookStart, bookEnd}) => 
                 
                  }}
               onClick={() => onDeleteBook(bookId)}
-               size="medium"
+               size="large"
               startIcon={<DeleteIcon />}
             >
-              Delete 
+              {/* Delete  */}
             </Button>
             </div>
             </div>
