@@ -113,14 +113,14 @@ const Book = ({setBookListInitValue, bookId, bookTitle, bookStart, bookEnd}) => 
             <LocalizationProvider dateAdapter={AdapterDateFns}>
     
                 <CustomDatePickerStart
-                            label="From"
+                            label="Start Date"
                             value={updateNewBookStart}
                             onChange={setNewUpdateBookStart} // {prop with state update function} from the Component
                             isSelected={startDateSelected}
                             setIsSelected={setStartDateSelected}
                 />
                  <CustomDatePickerEnd
-                            label="To"
+                            label="End Date"
                             value={updateNewBookEnd}
                             onChange={setNewUpdateBookEnd} // {prop with state update function} from the Component
                             isSelected={endDateSelected}
@@ -130,13 +130,13 @@ const Book = ({setBookListInitValue, bookId, bookTitle, bookStart, bookEnd}) => 
               <Button
               variant="contained"
               sx = {{
-              color: "#619061",
+              color: "#202029",
               fontWeight:"800",
-              backgroundColor:"#e3fbe3",
+              backgroundColor:"#FEFBF0",
               boxShadow:"none",
               ":hover": { // needs to be precised as well when changing a a color 
-                backgroundColor:"#e3fbe3",
-                borderColor:"#FFE3E2",
+                backgroundColor:"#FEFBF0",
+                borderColor:"#FFFFFF",
                 border:"1px solid",
                 boxShadow:"none",
               }
@@ -157,11 +157,10 @@ const Book = ({setBookListInitValue, bookId, bookTitle, bookStart, bookEnd}) => 
               sx = {{
                 color: "#F00000",
                 fontWeight:"800",
-                backgroundColor:"#FFFFFF",
+                backgroundColor:"#FEFBF0",
                 boxShadow:"none",
-                width:"1rem",
                 ":hover": { // needs to be precised as well when changing a a color 
-                  backgroundColor:"#FFFFFF",
+                  backgroundColor:"#FEFBF0",
                   boxShadow:"none",
                   borderColor:"#FFE3E2",
                   border:"1px solid",
@@ -169,10 +168,10 @@ const Book = ({setBookListInitValue, bookId, bookTitle, bookStart, bookEnd}) => 
                 
                  }}
               onClick={() => onDeleteBook(bookId)}
-               size="large"
+               size="medium"
               startIcon={<DeleteIcon />}
             >
-              {/* Delete  */}
+              Delete 
             </Button>
             </div>
             </div>
