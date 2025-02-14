@@ -17,9 +17,9 @@ const CustomDatePickerStart = ({ label, value, onChange, isSelected, setIsSelect
         day: {
           sx: {
             "&.MuiPickersDay-today": {
-              border: "1px solid ##DE61B5 !important",  
-              backgroundColor: "#FEE9F8 !important",  
-              color: "#DE61B5", // Change text color for today
+              border: "1px solid #FF0000 !important",  
+              backgroundColor: "#FF0000 !important",  
+              color: "#FFFFFF", // Change text color for today
             },
           },
         },
