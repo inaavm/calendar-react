@@ -1,78 +1,37 @@
-.rbc-event {
-    background-color:transparent !important; 
- 
-    border: none !important;
-    border-radius: 5px !important;
-    color: rgb(27, 49, 214) !important;
-    font-family: 'Inter', sans-serif !important;
-    font-size: 0.6rem !important;
-    padding: .3rem !important;
-    text-align: center !important;
-  }
-  
-  .rbc-today {
-    background-color: #fbfbfb !important;
-    /* border: 1px solid #464646 !important; */
-  }
-  
-  /* .rbc-today-title {
-    color:red!important;
-  } */
-  
-  .rbc-header {
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    padding: 8px 0 !important;
-    text-transform: uppercase;
-    font-size: 0.875rem;
-  }
-  
-  .rbc-off-range-bg {
-    background-color: #ffffff !important;
-  }
-  
-  .rbc-date-cell {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.875rem;
-    /* background-color: #e8e37ad8 !important; */
-  }
-  
-  .rbc-toolbar-button[data-value="today"] {
-    background-color: #e8e37ad8 !important;
-    color: black !important;
-  }
+/* Change the red dot for the current day */
+.modeButton modeButtonActive{
+  background-color: #706F69 !important;
+  border-radius: 50%;
+}
 
-  /* change the monht title */
-  .rbc-toolbar-label {
-    font-family: 'Montserrat', sans-serif !important;
-    font-size: 1.5rem !important;  
-    color: #2C2C2C!important;  /* Change text color */
-    letter-spacing: 1px; 
-    font-weight: 700 !important;
+.calendarHeaderButtons {
+   color: #FF0000!important;
 
 }
 
-.rbc-calendar {
-  width: 100% !important;
-  max-width: 100%;
+.modeButtonActive{
+  color: #FF0000!important;
+}
+ /* .react-awesome-calendar__tabs {
+  background-color: #2d3b45; 
+} */ 
+
+.currentDay{
+  background-color: #FF0000!important;
 }
 
-.rbc-month-view {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.weekRow {
+border-bottom: 1px solid  #706F69 !important;
 }
 
-/* Ensure the calendar adjusts on smaller screens */
-@media (max-width: 768px) {
-  .rbc-toolbar-label {
-    font-size: 1.2rem !important;
-  }
-  .rbc-event {
-    font-size: 0.5rem !important;
-    padding: 2px !important;
-  }
-  .rbc-header {
-    font-size: 0.75rem !important;
-  }
+.calendarHeader {
+  border-bottom: 1px solid  #706F69 !important;
+}
+
+.modeButtonActive {
+  color:#706F69!important;
+}
+
+.calendarWrapper{
+  width: 100%;
 }
