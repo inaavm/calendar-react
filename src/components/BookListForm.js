@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import CalendarComponent from './calendar';
 import CustomDatePickerStart from "./CustomDatePickerStart";
 import CustomDatePickerEnd from "./CustomDatePickerEnd";
 import Book from './Book';
@@ -19,12 +18,15 @@ import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import dayjs from 'dayjs';
 
+import CalendarR from "./CalendarReact";
+
 // STYLE css
 import"../App.css";
+import { grey } from "@mui/material/colors";
 
 
 
-const BookListForm = () => {
+const BookListForm = ({renderAnimation}) => {
     
 
     const [bookList, setBookList] = useState([]);// state for the list 
@@ -152,160 +154,162 @@ const BookListForm = () => {
             setOpenModal(false);
         };
 
-
-     return(
-      <div className="container">
-         <div className="container--calendar-form">
-            <div className="calendar">
-                <CalendarComponent events= {bookList} /> 
-            </div>
-            <div className="form">
-            <h2 id="titleform">New event</h2>
-            
-              <form onSubmit={(e) => { 
-                    e.preventDefault()
-                    postAddNewBook();
-                }}
-                >
-        
-                <Stack spacing = {2}>
-                {dateError && (
-                                <Alert severity="error" sx={{ width: '100%' }}>
-                                    {dateError}
-                                </Alert>
-                )}
-                      <TextField id="standard-basic"
-                                required
-                                label="Add a new event"
-                                // placeholder="Dinner with Ann"
-                                variant="standard"
-                                value={newBTitle || ""} // if it s undefined than - error no newB is defined
-                                onChange={e => setNewBTitle(e.target.value)}
-                                InputLabelProps={{
-                                    shrink: true,  // Keeps the label in place                          
-                                  }}
-                                  sx={{
-                                    width: "12rem",
-                                    height: "2rem",
-                                    fontSize: "1rem",
-                                    fontFamily: "sans-serif",
-                                    fontWeight: "200",
-                                    color: "black", // Text color
-                                    paddingTop: ".5rem",
-                                    paddingBottom:"3rem",
-                                    
-                                    "& .MuiInputLabel-root": {
-                                      fontSize: "1.2rem",
-                                      fontWeight: "300",
-                                      paddingTop: ".3rem",
-                                      color: "#3f3844",
-                                    },
-                                  }}
-                      />
-      
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <CustomDatePickerStart
-                            label="Start Date"
-                            value={newBStart}
-                            // onChange={setNewBStart} // {prop with state update function} from the Component
-                            onChange={handleStartDateChange}
-                            isSelected={startDateSelected}
-                            setIsSelected={setStartDateSelected}
-                            error={!!dateError}
-                        />
-                          <CustomDatePickerEnd
-                            label="End Date"
-                            value={newBEnd}
-                            // onChange={setNewBEnd} // {prop with state update function} from the Component
-                            isSelected={endDateSelected}
-                            setIsSelected={setEndDateSelected}
-                            onChange={handleEndDateChange}
-                            error={!!dateError}
-                            minDate={newBStart} 
-                        />
-                        {/* <TimePicker label="Basic time picker" /> */}
-                     </LocalizationProvider>     
-                    <Button 
-                        variant = "contained" 
-                        type="submit"
-                        size = "medium"
-                        sx = {{
-                            color: "#DE62B6",
-                            fontWeight:"800",
-                            backgroundColor:"#FFE9F8",
-                            boxShadow:"none",
-                            ":hover": { // needs to be precised as well when changing a a color 
-                            backgroundColor:"#FFE9F8",
-                            boxShadow:"none",
-                            borderColor:"#DE62B6",
-                            border:"1px solid",
-                            width: 'auto',
-                            }
-                            }}
-                            startIcon={<AddIcon />}
-                            >
-                            Add a new event
-                    </Button>
-                 </Stack>
-              </form>
-            </div> 
-         </div> 
-     
-         <div className={"existing-books"}>
-
-            {/* render the Lotti File without modal  */}
-
-            {/* // it is  rendered if the conditions are true - no need to return like in a function   */}
-         {(pastEvents.length  || upcomingEvents.length)  ===  0 && (
-                <div className="animation-container">
-                    <p>No events yet! Add a new event to get started.</p>    
-                    <DotLottieReact className="animation"
-                    src="https://lottie.host/a3aa3e5d-e3a9-4518-940a-8e7dcf8db829/KJRQyFSyIw.lottie"
-                    loop
-                    autoplay
-                    style={{ width: '100%', height: 'auto' }} 
-                 />
-                    
+        return (
+            <div >
+                <div className="header">
+                    <div class="currentdate">
+                        <p>
+                        <span className="weekday">
+                            {new Date().toLocaleDateString(undefined, { weekday: "long" })}
+                        </span>
+                        </p>
+                    </div>
+                    {/* Animation Section */}
+                    {(pastEvents.length === 0 && upcomingEvents.length === 0) && (
+                        <div className="animation-container">
+                                <div>
+                                    <p>No events yet! Add a new event to get started.</p>
+                                </div> 
+                            <DotLottieReact
+                                className="animation"
+                                src="https://lottie.host/e519c080-596c-49ad-ae2f-9e0ac5708121/h5v8ivTEUd.lottie"
+                                loop
+                                autoplay
+                                style={{ width: '100%', height: 'auto' }}
+                            />
+                        </div>
+                    )}
                 </div>
-            )}
-              {upcomingEvents.length > 0 && (
-                    <>
-                        <h2> <span id="upcoming">{upcomingEvents.length}</span> Current & Upcoming Events</h2>
-                        <List>
-                            {bookListExisting(upcomingEvents)}
-                        </List>
-                    </>
-                )}
-                
-                {pastEvents.length > 0 && (
-                    <>
-                        {/* <Divider sx={{ my: 3 }} /> */}
-                        <h2><span id="past">{pastEvents.length}</span> Past Events </h2>
-                        <List>
-                            {bookListExisting(pastEvents)}
-                        </List>
-                    </>
-                )}
-         </div>
-
-         {/* {openModal && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <p>No events yet! Add a new event to get started.</p>
-            <DotLottieReact
-              src="https://lottie.host/a3aa3e5d-e3a9-4518-940a-8e7dcf8db829/KJRQyFSyIw.lottie"
-              loop
-              autoplay
-            />
-            <button className="modal-close-btn" onClick={handleCloseModal}>
-              Close
-            </button>
-          </div>
-        </div>
-      )} */}
-      </div>
-     )
-}
-
-
+        
+                <div className="container">
+                    <div className="container--calendar-form">
+                        {/* Calendar Section */}
+                        <div className="calendar">
+                            <CalendarR
+                                events={bookList.map(book => ({
+                                    id: book.id,
+                                    title: book.title,
+                                    from: book.start,
+                                    to: book.end,
+                                    color: "#202029",
+                                }))}
+                            />
+                        </div>
+        
+                        {/* Form Section */}
+                        <div className="form">
+                            <h2 id="titleform">New event</h2>
+        
+                            <form onSubmit={(e) => {
+                                e.preventDefault();
+                                postAddNewBook();
+                            }}>
+                                <Stack spacing={2}>
+                                    {dateError && (
+                                        <Alert severity="error" sx={{ width: '100%' }}>
+                                            {dateError}
+                                        </Alert>
+                                    )}
+        
+                                    <TextField
+                                        id="standard-basic"
+                                        required
+                                        label="Add a new event"
+                                        variant="standard"
+                                        value={newBTitle || ""}
+                                        onChange={e => setNewBTitle(e.target.value)}
+                                        InputLabelProps={{ shrink: true }}
+                                        sx={{
+                                            width: "12rem",
+                                            height: "2rem",
+                                            fontSize: "1rem",
+                                            fontFamily: "sans-serif",
+                                            fontWeight: "200",
+                                            color: "black",
+                                            paddingTop: ".5rem",
+                                            paddingBottom: "3rem",
+                                            "& .MuiInputLabel-root": {
+                                                fontSize: "1.2rem",
+                                                fontWeight: "300",
+                                                paddingTop: ".3rem",
+                                                color: "#3f3844",
+                                            },
+                                        }}
+                                    />
+        
+                                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                        <CustomDatePickerStart
+                                            label="Start Date"
+                                            value={newBStart}
+                                            onChange={handleStartDateChange}
+                                            isSelected={startDateSelected}
+                                            setIsSelected={setStartDateSelected}
+                                            error={!!dateError}
+                                        />
+                                        <CustomDatePickerEnd
+                                            label="End Date"
+                                            value={newBEnd}
+                                            isSelected={endDateSelected}
+                                            setIsSelected={setEndDateSelected}
+                                            onChange={handleEndDateChange}
+                                            error={!!dateError}
+                                            minDate={newBStart}
+                                        />
+                                    </LocalizationProvider>
+        
+                                    <Button
+                                        variant="contained"
+                                        type="submit"
+                                        size="medium"
+                                        sx={{
+                                            color: "#FFFFFF",
+                                            fontWeight: "800",
+                                            backgroundColor: "#202029",
+                                            boxShadow: "none",
+                                            ":hover": {
+                                                backgroundColor: "#202029",
+                                                boxShadow: "none",
+                                                borderColor: "#DE62B6",
+                                                border: "1px solid",
+                                                textDecoration: "underline",
+                                                width: 'auto',
+                                            }
+                                        }}
+                                        startIcon={<AddIcon />}
+                                    >
+                                        Add a new event
+                                    </Button>
+                                </Stack>
+                            </form>
+                        </div>
+                    </div>
+        
+                    {/* Existing Books Section */}
+                    <div className="existing-books">
+                        {upcomingEvents.length > 0 && (
+                            <>
+                                <h2>
+                                    <span id="upcoming">{upcomingEvents.length}</span> Current & Upcoming Events
+                                </h2>
+                                <List>
+                                    {bookListExisting(upcomingEvents)}
+                                </List>
+                            </>
+                        )}
+        
+                        {pastEvents.length > 0 && (
+                            <>
+                                <h2>
+                                    <span id="past">{pastEvents.length}</span> Past Events
+                                </h2>
+                                <List>
+                                    {bookListExisting(pastEvents)}
+                                </List>
+                            </>
+                        )}
+                    </div>
+                </div>
+            </div>
+        );
+}  
 export default BookListForm;
