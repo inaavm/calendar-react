@@ -51,3 +51,28 @@
     font-weight: 700 !important;
 
 }
+
+.rbc-calendar {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.rbc-month-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Ensure the calendar adjusts on smaller screens */
+@media (max-width: 768px) {
+  .rbc-toolbar-label {
+    font-size: 1.2rem !important;
+  }
+  .rbc-event {
+    font-size: 0.5rem !important;
+    padding: 2px !important;
+  }
+  .rbc-header {
+    font-size: 0.75rem !important;
+  }
+}
