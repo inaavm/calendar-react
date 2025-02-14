@@ -167,9 +167,9 @@ const BookListForm = ({renderAnimation}) => {
                     {/* Animation Section */}
                     {(pastEvents.length === 0 && upcomingEvents.length === 0) && (
                         <div className="animation-container">
-                                <div>
+                                {/* <div>
                                     <p>No events yet! Add a new event to get started.</p>
-                                </div> 
+                                </div>  */}
                             <DotLottieReact
                                 className="animation"
                                 src="https://lottie.host/e519c080-596c-49ad-ae2f-9e0ac5708121/h5v8ivTEUd.lottie"
